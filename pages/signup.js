@@ -26,7 +26,6 @@ const signup = () => {
   // }, []);
 
   const handleChange = (e)=>{
-    console.log(e)
     switch (e.target.name) {
       case 'name':
         setName(e.target.value)

@@ -79,7 +79,6 @@ const admin = () => {
 
         const data = await response.json();
         setdata(data)
-        console.log(data.message)
 
     }
   return (

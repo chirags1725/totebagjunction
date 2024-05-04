@@ -17,7 +17,6 @@ export default function Home() {
         }).then(a=> {
             setdata(a)
             sessionStorage.setItem('data',JSON.stringify(a))
-            console.log(a)
         })
     }
 
