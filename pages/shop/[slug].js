@@ -87,7 +87,7 @@ export default function Page(props) {
       <div onClick={back} style={{color:"blue",fontSize:'16px',padding:"10px 20px",lineHeight:'16px',display:'flex',position:"relative",marginLeft:"20px",marginTop:"10px",width:"fit-content"}}><FaAngleLeft></FaAngleLeft>Back</div>
 
       {message && (
-        <p style={{ background: "lightgreen", textAlign: "center", marginBottom: "16px", padding: "10px",position:'absolute',top:'80px',zIndex:'10000',width:'100vw' }}>
+        <p style={{ background: "lightgreen", textAlign: "center", marginBottom: "16px", padding: "10px",position:'fixed',top:'80px',zIndex:'10000',width:'100vw' }}>
           {message}
         </p>
       )}
