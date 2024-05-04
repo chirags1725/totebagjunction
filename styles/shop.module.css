@@ -52,34 +52,44 @@
 }
 .data{
   display: flex;
+  column-gap: 20px;
 }
 .data img {
   width: auto;
-  max-width: 500px;
+  max-width: 350px;
+  margin-left: 28px;
+
 }
 .data .img {
   position: relative;
   top:50%;
   width: 600px;
-  padding-top:60px;
+  padding-top:100px;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
 .data .title {
-  margin-top: 40px;
+  margin-top: 80px;
   font-weight: 600;
   text-transform: capitalize;
   font-size: 1.6em;
+  margin-right: 20px;
 }
 .data .desc {
-  margin-top: 4px;
-  font-size: 1.2em;
+  margin-top: 10px;
+  font-size: 1em;
+  max-width: 600px;
+  color: rgb(79, 79, 79);
+  margin-right: 20px;
+
 }
 
 .price{
   margin-top: 20px;
-  color:red
+  color:red;
+
+  font-weight: 600;
 }
 .data .colors{
   margin-top: 20px;

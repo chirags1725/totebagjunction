@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className={styles.icon}>
           {shownav ? <IoCloseOutline onClick={toggle}/> : <FiMenu onClick={toggle} />}
         </div>
-        <div className={styles.logo}><Link href="/">Logo</Link></div>
+        <div className={styles.logo} style={{fontWeight:"800"}}><Link href="/">Tote Bag Junction</Link></div>
       </div>
 
       <div className={styles.right}>

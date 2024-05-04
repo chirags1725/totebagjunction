@@ -4,6 +4,7 @@ import styles from "@/styles/shop.module.css";
 import Link from 'next/link';
 import Image from 'next/image'
 import Bagbox from '@/Components/Bagbox'
+import Loader from '@/Components/loader';
 
 const shop = () => {
     const [data, setdata] = useState(null)
@@ -53,13 +54,15 @@ const shop = () => {
     <div className={styles.all}>
       <h2 className={styles.bagshead}>Shop from our latest collection</h2>
       <div className={styles.bags}>
-        {data && data.map((e)=>{
+        {data ? data.map((e)=>{
           return <Link href={`/shop/${e._id}`} key={e._id} >
           <Bagbox price={e.price} title={e.title} image={e.image}></Bagbox>
         </Link>
-        })}
+        }) : <Loader/>}
 
       </div>
+      <center style={{marginTop:'20px',fontWeight:"600",fontSize:'1.1em'}}>{data && `Showing ${data.length} products`}</center>
+
 
     </div>
   )

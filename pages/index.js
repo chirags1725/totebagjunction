@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import Bagbox from "../Components/Bagbox";
+import Loader from "@/Components/loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -61,12 +62,11 @@ export default function Home() {
 
       <h1 className={styles.bagshead}>Latest Arrivals</h1>
       <div className={styles.bags}>
-        {data && data.slice(0,8).map((e)=>{
+        {data ? data.slice(0,8).map((e)=>{
           return <Link href={`/shop/${e._id}`} key={e._id} >
             <Bagbox price={e.price} title={e.title} image={e.image}></Bagbox>
             </Link>
-        })}
-
+        }) : <Loader />}
       </div>
     </>
   );

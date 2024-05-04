@@ -107,3 +107,14 @@
     font-weight: bold;
 
 }
+@media (max-width:404px) {
+    .left{
+        padding-left: 10px;
+    }
+    .logo{
+        margin-left: 10px;
+    }
+    .right{
+        padding-right: 10px;
+    }
+}

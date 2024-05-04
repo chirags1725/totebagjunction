@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import styles from "@/styles/shop.module.css";
 import Link from "next/link";
 import Head from "next/head";
+import { FaAngleLeft } from "react-icons/fa6";
+import Loader from "@/Components/loader";
 
 export default function Page(props) {
   const router = useRouter();
@@ -74,10 +76,18 @@ export default function Page(props) {
     setColorIndex(index); // Changed from setColor to setColorIndex
   };
 
+  const back=()=>{
+    router.back()
+
+  }
+
   return (
     <>
+    
+      <div onClick={back} style={{color:"blue",fontSize:'16px',padding:"10px 20px",lineHeight:'16px',display:'flex',position:"relative",marginLeft:"20px",marginTop:"10px",width:"fit-content"}}><FaAngleLeft></FaAngleLeft>Back</div>
+
       {message && (
-        <p style={{ background: "lightgreen", textAlign: "center", marginBottom: "16px", padding: "10px" }}>
+        <p style={{ background: "lightgreen", textAlign: "center", marginBottom: "16px", padding: "10px",position:'absolute',top:'80px',zIndex:'10000',width:'100vw' }}>
           {message}
         </p>
       )}
@@ -96,7 +106,7 @@ export default function Page(props) {
                   <div key={index} style={{ backgroundColor: color, border : index === colorIndex ? '2px solid blue' :'1px solid black' , boxShadow: index === colorIndex && '0px 0px 5px black'}} className={styles.color} onClick={() => handleColorClick(index,color)}></div>
                 ))}
             </div>
-            <div style={{ marginTop: "20px", display: "flex", alignItems: "center", marginBottom: "24px" }}>
+            <div style={{ marginLeft:"20px",marginTop: "20px", display: "flex", alignItems: "center", marginBottom: "24px" }}>
               <button style={{ fontSize: "18px", marginRight: "8px", padding: "4px 8px", border: "1px solid #ccc", borderRadius: "4px" }} onClick={decrementQuantity}>
                 -
               </button>
@@ -104,16 +114,18 @@ export default function Page(props) {
               <button style={{ fontSize: "18px", marginRight: "8px", padding: "4px 8px", border: "1px solid #ccc", borderRadius: "4px" }} onClick={incrementQuantity}>
                 +
               </button>
-            </div>
-            <button style={{ fontSize: "14px", padding: "20px", backgroundColor: "#007bff", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer" }} onClick={addToCart}>
+            <button style={{ marginLeft:"20px",fontSize: "14px", padding: "20px", backgroundColor: "#007bff", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer" }} onClick={addToCart}>
               Add to Cart
             </button>
+            </div>
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <Loader/>
       )}
+
     </>
+
   );
 }
 
