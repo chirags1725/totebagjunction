@@ -1,0 +1,30 @@
+.box img{
+    width: 250px;
+    margin-bottom: 14px;
+}
+.box .title{
+    margin-left: 10px;
+    font-size: 1.2em;
+    text-transform: capitalize;
+}
+.rate{
+    margin-left: 15px;
+    margin-top: 4px;
+    font-size: 1em;
+    color: red;
+}
+.box{
+    transition: .2s;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+.box:hover{
+    background-color: aliceblue;
+
+}
+@media (max-width: 670px) {
+    .box img{
+        width: 150px;
+    }
+}
