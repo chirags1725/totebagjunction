@@ -1,9 +1,11 @@
 import React from 'react'
 import styles from '@/styles/box.module.css'
 import Image from 'next/image'
+import { Zoom } from 'react-awesome-reveal';
 
 const Bagbox = (props) => {
   return (
+    <Zoom duration={'200'}>
     <div>
       <div className={styles.box}>
         <div className={styles.img}>
@@ -13,6 +15,7 @@ const Bagbox = (props) => {
       <div className={styles.rate}>&#8377; {props.price}</div>
     </div>
     </div>
+    </Zoom>
 
   )
 }

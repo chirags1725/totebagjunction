@@ -12,7 +12,7 @@ export default function Page(props) {
   const [quantity, setQuantity] = useState(1);
   const [cartItems, setCartItems] = useState([]);
   const [message, setMessage] = useState("");
-  const [colorIndex, setColorIndex] = useState(0); // Changed from colorindex to colorIndex
+  const [colorIndex, setColorIndex] = useState(0);
 
   const incrementQuantity = () => {
     if (quantity < 50) {
@@ -47,13 +47,13 @@ export default function Page(props) {
   }, []);
 
   const addToCart = () => {
-    if (colorIndex === null) { // Changed from !color to !colorIndex
+    if (colorIndex === null) { 
       setMessage("Please select a color");
       return;
     }
 
     const newItem = {
-      id: props.slug, // Changed from props to props.slug
+      id: props.slug,
       quantity: quantity,
       color: data[0].color.split(',')[colorIndex],
       title:data[0].title,
@@ -73,7 +73,7 @@ export default function Page(props) {
   };
 
   const handleColorClick = (index,color) => {
-    setColorIndex(index); // Changed from setColor to setColorIndex
+    setColorIndex(index); 
   };
 
   const back=()=>{

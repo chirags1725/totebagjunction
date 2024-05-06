@@ -63,8 +63,8 @@ const CartPage = () => {
 
 
       <div style={styles.bottom}>
-        <div class={styles.total}>Total: &#8377;{calculateTotalPrice()}</div>
-        <div><Link style={{ fontSize: "14px", padding: "12px", backgroundColor: "#007bff", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer" }} href={'/buy'}>Buy Now</Link></div>
+        <div class={styles.total}>Total: &#8377;{calculateTotalPrice()} <span style={{fontSize:'2em', lineHeight:'2em', fontWeight:'10', color:'#00000080'}}> | </span> {cartItems.length === 1 ? cartItems.length + ' Item' : cartItems.length + ' Items'} </div>
+        <div><Link style={{ fontSize: "14px", padding: "12px", backgroundColor: "#007bff", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer" }} href={'/checkout'}>Buy Now</Link></div>
       </div>
     </div>
   );

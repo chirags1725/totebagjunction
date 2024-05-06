@@ -7,6 +7,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { IoCloseOutline } from "react-icons/io5";
 import SearchPage from "./search";
+import { Slide } from "react-awesome-reveal";
 
 const Navbar = () => {
   const [shownav, setshownav] = useState(false)
@@ -37,9 +38,11 @@ const Navbar = () => {
     </div>
     <div className={`${styles.menu} ${shownav ? styles.show : ''}`}>
       <div className={styles.links}>
+    <Slide direction="left">
       <Link href={"/"} onClick={toggle}>Home</Link>
       <Link href={"/shop"} onClick={toggle}>Shop</Link>
       
+    </Slide>
       </div>
     </div>
     {search && <SearchPage onClick={togglesearch}></SearchPage>}
