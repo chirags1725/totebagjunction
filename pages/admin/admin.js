@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react'
 import { useRouter } from 'next/router'
 import styles from '@/styles/admin.module.css'
+import Link from 'next/link'
 
 const admin = () => {
     let router= useRouter()
@@ -10,6 +11,8 @@ const admin = () => {
     const [color, setcolor] = useState('')
     const [image, setImage] = useState('')
     const [data, setdata] = useState(null)
+    const [message, setMessage] = useState("");
+
 
     const [error, setError] = useState(null)
 
@@ -68,21 +71,29 @@ const admin = () => {
             image:image
           };
         
-          const response = await fetch('/api/upload', {
+          fetch('/api/upload', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({ jsonData }),
 
-          });
-
-        const data = await response.json();
-        setdata(data)
+          }).then((response)=>{
+        return response.json()
+            
+    }).then((a)=>{
+        setMessage(a.message)
+        setTimeout(()=>setMessage(''),2000)
+    })
 
     }
   return (
     <div className={styles.admin}>
+        {message && (
+      <p style={{position:"fixed",top:"80px",left:"0px", background: "red", textAlign: "center", marginBottom: "16px", padding: "10px",position:'fixed',top:'80px',zIndex:'10000',width:'100vw' }}>
+          {message}
+        </p>
+        )}
 
         {error && error}
         <form onSubmit={clg}>
@@ -93,6 +104,15 @@ const admin = () => {
       <input type='file' required accept='image/*' onChange={handleimage}/>
       <button type='submit' disabled={error} value="Submit">Submit</button>
         </form>
+        <h1 style={{marginTop:"10px"}}>Orders: </h1>
+        <button onClick={()=>{
+            router.push('/admin/orders')
+        }}>Orders</button>
+
+<h1 style={{marginTop:"10px"}}>Products</h1>
+        <button onClick={()=>{
+            router.push('/admin/products')
+        }}>Products</button>
     </div>
   )
 }

@@ -115,4 +115,10 @@
   .table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
   }
-  
+  .pay{
+    padding:10px;
+    background-color: #9ba9fc;
+    border:none;
+    outline: none;
+    margin-top: 25px;
+  }

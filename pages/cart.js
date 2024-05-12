@@ -63,7 +63,7 @@ const CartPage = () => {
 
 
       <div style={styles.bottom}>
-        <div class={styles.total}>Total: &#8377;{calculateTotalPrice()} <span style={{fontSize:'2em', lineHeight:'2em', fontWeight:'10', color:'#00000080'}}> | </span> {cartItems.length === 1 ? cartItems.length + ' Item' : cartItems.length + ' Items'} </div>
+        <div className={styles.total}>Total: &#8377;{calculateTotalPrice()} <span style={{fontSize:'2em', lineHeight:'2em', fontWeight:'10', color:'#00000080'}}> | </span> {cartItems.length === 1 ? cartItems.length + ' Item' : cartItems.length + ' Items'} </div>
         <div><Link style={{ fontSize: "14px", padding: "12px", backgroundColor: "#007bff", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer" }} href={'/checkout'}>Buy Now</Link></div>
       </div>
     </div>
@@ -88,7 +88,7 @@ const styles = {
     borderCollapse: "collapse",
     marginTop: "20px",
     border: "1px solid #ddd",
-    marginBottom:'50px'
+    overflowX: "auto"
   },
   th: {
     backgroundColor: "#f2f2f2",
@@ -116,6 +116,8 @@ const styles = {
   bottom: {
     position:'fixed',
     bottom:'0px',
+    left: 0,
+    right: 0,
     paddingLeft:'7vw',
     paddingRight:'7vw',
     height:'60px',

@@ -6,6 +6,7 @@ import Link from "next/link";
 import Bagbox from "../Components/Bagbox";
 import Loader from "@/Components/loader";
 import { Fade } from 'react-awesome-reveal';
+import Footer from "@/Components/Footer";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -63,6 +64,7 @@ export default function Home() {
             <Bagbox price={e.price} title={e.title} image={e.image}></Bagbox>
             </Link>
         }) : <Loader />}
+        <Footer></Footer>
       </div>
     </>
   );

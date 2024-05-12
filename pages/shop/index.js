@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image'
 import Bagbox from '@/Components/Bagbox'
 import Loader from '@/Components/loader';
+import Footer from '@/Components/Footer';
 
 const shop = () => {
     const [data, setdata] = useState(null)
@@ -64,6 +65,7 @@ const shop = () => {
       <center style={{marginTop:'20px',fontWeight:"600",fontSize:'1.1em'}}>{data && `Showing ${data.length} products`}</center>
 
 
+<Footer></Footer>
     </div>
   )
 }

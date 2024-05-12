@@ -33,7 +33,6 @@ export default function Page(props) {
         const response = await fetch(`/api/getproduct?id=${slug}`);
         const jsonData = await response.json();
         setData(jsonData);
-        console.log(jsonData)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
