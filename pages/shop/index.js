@@ -9,48 +9,33 @@ import Footer from '@/Components/Footer';
 
 const shop = () => {
     const [data, setdata] = useState(null)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [count, setCount] = useState(1);
+
     
     const fetchdata = async () =>{
-        let data = await fetch(`/api/getproducts`).then(a=>{
+        await fetch(`/api/getproducts?products=10&page=${currentPage}`).then(a=>{
             return a.json()
         }).then(a=> {
-            setdata(a)
-            sessionStorage.setItem('data',JSON.stringify(a))
-            console.log(a)
+            setdata(a.userdata)
+            setCount(a.totalCount)
         })
     }
+    console.log(count)
+
 
     useEffect(() => {
-      if (typeof window !== 'undefined') {
-        const savedData = sessionStorage.getItem('data');
-        if (savedData) {
-          setdata(JSON.parse(savedData))
-        }
-        else{
-          fetchdata()
-        }
-      }
-      if(!data){
-        fetchdata()
-        }
+      fetchdata()
     
-    }, [])
+    }, [currentPage])
     
-    // const [base64Image, setBase64Image] = useState(null);
 
-    // const handleFileChange = event => {
-    //     const file = event.target.files[0];
-    //     if (file) {
-    //         const reader = new FileReader();
-    //         reader.onloadend = () => {
-    //             // Convert the image to base64 string
-    //             const base64String = reader.result.split(',')[1];
-    //             console.log(base64String)
-    //             setBase64Image(base64String);
-    //         };
-    //         reader.readAsDataURL(file);
-    //     }
-    // };
+    const buttons = [];
+    for (let i = 0; i < Math.ceil(count / 10); i++) {
+      buttons.push(<button style={{padding:"8px", background:i+1===currentPage ? "rgba(0,0,255,.2)":"rgba(0,0,255,.04)",border:'none',margin:'4px', outline:"none",cursor:"pointer"}} key={i} onClick={()=>{setCurrentPage(i+1)
+        setdata('')
+        window.scrollTo(0,0)}}>{i + 1}</button>);
+    }
   return (
     <div className={styles.all}>
       <h2 className={styles.bagshead}>Shop from our latest collection</h2>
@@ -62,7 +47,56 @@ const shop = () => {
         }) : <Loader/>}
 
       </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <center style={{marginTop:'20px',fontWeight:"600",fontSize:'1.1em'}}>{data && `Showing ${data.length} products`}</center>
+      <div style={{display:"flex",flexWrap:"wrap",position:"relative",alignItems:"center",textAlign:"center",width:"80vw",justifyContent:"center",left:"50%",transform:"translateX(-50%)",marginTop:"40px"}}><button
+  disabled={currentPage === 1}
+  onClick={() => {setCurrentPage(currentPage - 1)
+    setdata('')
+    window.scrollTo(0,0)
+  }}style={{
+    padding: '8px 16px',
+    margin: '0 8px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    backgroundColor: currentPage === 1 ? '#ccc' : '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+  }}
+>
+  Previous Page
+</button>
+{/* {Array.from({ length: count }, (_, i) => (
+  <button key={i}>{i + 1}</button>
+))} */}
+{buttons}
+<button
+disabled={currentPage === Math.ceil(count / 10)}
+  onClick={() => {setCurrentPage(currentPage + 1)
+    setdata('')
+    window.scrollTo(0,0)
+  }}
+  style={{
+    padding: '8px 16px',
+    margin: '0 8px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    backgroundColor: currentPage === Math.ceil(count / 10) ? '#ccc' : '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: currentPage === Math.ceil(count / 10) ? 'not-allowed' : 'pointer',
+  }}
+>
+  Next Page
+</button>
+</div>
+
 
 
 <Footer></Footer>

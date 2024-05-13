@@ -8,16 +8,18 @@ const products = () => {
     const [data, setdata] = useState(null)
   const [message, setMessage] = useState("");
   const router = useRouter()
+  const [currentPage, setCurrentPage] = useState(1);
+  const [count, setCount] = useState(1);
 
 
 
     
     const fetchdata = async () =>{
-        let data = await fetch(`/api/getproducts`).then(a=>{
+        const data = await fetch(`/api/getproducts?products=10&page=${currentPage}`).then(a=>{
             return a.json()
         }).then(a=> {
-            setdata(a)
-            sessionStorage.setItem('data',JSON.stringify(a))
+            setdata(a.userdata)
+            setCount(a.totalCount)
         })
     }
     useEffect(() => {
@@ -26,20 +28,8 @@ const products = () => {
         if(!cred){
         router.push("/admin")
         }
-        if (typeof window !== 'undefined') {
-          const savedData = sessionStorage.getItem('data');
-          if (savedData) {
-            setdata(JSON.parse(savedData))
-          }
-          else{
-            fetchdata()
-          }
-        }
-        // if(!data){
-        //   fetchdata()
-        //   }
-      
-      }, [])
+        fetchdata()
+      }, [currentPage])
       const deleteItem =(e)=>{
         console.log(e.target.value)
         setMessage("being deleted")
@@ -49,6 +39,13 @@ const products = () => {
             setMessage("")
         })
       }
+
+      const buttons = [];
+    for (let i = 0; i < Math.ceil(count / 10); i++) {
+      buttons.push(<button style={{padding:"8px", background:i+1===currentPage ? "rgba(0,0,255,.2)":"rgba(0,0,255,.04)",border:'none',margin:'4px', outline:"none",cursor:"pointer"}} key={i} onClick={()=>{setCurrentPage(i+1)
+        setdata('')
+        window.scrollTo(0,0)}}>{i + 1}</button>);
+    }
     
 
     
@@ -79,6 +76,52 @@ const products = () => {
         }) : <Loader />}
         
         </div>
+
+        <div style={{display:"flex",flexWrap:"wrap",position:"relative",alignItems:"center",textAlign:"center",width:"80vw",justifyContent:"center",left:"50%",transform:"translateX(-50%)"}}><button
+  disabled={currentPage === 1}
+  onClick={() => {setCurrentPage(currentPage - 1)
+    setdata('')
+    window.scrollTo(0,0)
+  }}style={{
+    padding: '8px 16px',
+    margin: '0 8px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    backgroundColor: currentPage === 1 ? '#ccc' : '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+  }}
+>
+  Previous Page
+</button>
+{/* {Array.from({ length: count }, (_, i) => (
+  <button key={i}>{i + 1}</button>
+))} */}
+{buttons}
+<button
+disabled={currentPage === Math.ceil(count / 10)}
+  onClick={() => {setCurrentPage(currentPage + 1)
+    setdata('')
+    window.scrollTo(0,0)
+  }}
+  style={{
+    padding: '8px 16px',
+    margin: '0 8px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    backgroundColor: currentPage === Math.ceil(count / 10) ? '#ccc' : '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: currentPage === Math.ceil(count / 10) ? 'not-allowed' : 'pointer',
+  }}
+>
+  Next Page
+</button>
+</div>
+
     </div>
   )
 }

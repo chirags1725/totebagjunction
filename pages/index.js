@@ -19,24 +19,12 @@ export default function Home() {
         let data = await fetch(`/api/getproducts`).then(a=>{
             return a.json()
         }).then(a=> {
-            setdata(a)
-            sessionStorage.setItem('data',JSON.stringify(a))
+            setdata(a.userdata)
         })
     }
 
     useEffect(() => {
-      if (typeof window !== 'undefined') {
-        const savedData = sessionStorage.getItem('data');
-        if (savedData) {
-          setdata(JSON.parse(savedData))
-        }
-        else{
-          fetchdata()
-        }
-      }
-      if(!data){
-        fetchdata()
-        }
+      fetchdata()
     
     }, [])
 
