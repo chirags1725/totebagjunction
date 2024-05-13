@@ -27,7 +27,7 @@ const shop = () => {
     useEffect(() => {
       fetchdata()
     
-    }, [currentPage])
+    }, [])
     
 
     const buttons = [];
@@ -52,7 +52,7 @@ const shop = () => {
       <br></br>
       <br></br>
       <center style={{marginTop:'20px',fontWeight:"600",fontSize:'1.1em'}}>{data && `Showing ${data.length} products`}</center>
-      <div style={{display:"flex",flexWrap:"wrap",position:"relative",alignItems:"center",textAlign:"center",width:"80vw",justifyContent:"center",left:"50%",transform:"translateX(-50%)",marginTop:"40px"}}><button
+      <div style={{display:"flex",flexWrap:"wrap",position:"relative",alignItems:"center",textAlign:"center",width:"80vw",justifyContent:"center",left:"50%",transform:"translateX(-50%)",marginTop:"40px",marginBottom:"40px"}}><button
   disabled={currentPage === 1}
   onClick={() => {setCurrentPage(currentPage - 1)
     setdata('')

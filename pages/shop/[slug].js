@@ -91,7 +91,7 @@ export default function Page(props) {
         </p>
       )}
       {data ? (
-        <div className={styles.data}>
+        <div className={styles.data} style={{transition:"transform 0s"}}>
           <div className={styles.img}>
             <img src={`data:image/png;base64,${data[0].image}`} alt="Image" />
           </div>
@@ -120,7 +120,9 @@ export default function Page(props) {
           </div>
         </div>
       ) : (
+        <div style={{textAlign:"center",top:"50%",position:"absolute",left:"50%",transform:"translate(-50%,-50%)",transition:"0s"}}>
         <Loader/>
+        </div>
       )}
 
     </>

@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     try {
       await client.connect();
 
-      const products = parseInt(req.query.products) || 8 
+      const products = parseInt(req.query.products) || 8
       const skip = (parseInt(req.query.page) - 1) * products || 0
 
       const database = client.db("users");

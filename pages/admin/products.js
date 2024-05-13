@@ -73,7 +73,10 @@ const products = () => {
             }} onClick={deleteItem} value={e._id}>
                 Delete</button>
             </div>
-        }) : <Loader />}
+        }) : 
+        <div style={{textAlign:"center",top:"50%",position:"absolute",left:"50%",transform:"translate(-50%,-50%)",transition:"0s"}}>
+        <Loader/>
+        </div>}
         
         </div>
 
