@@ -15,6 +15,7 @@ const SearchPage = () => {
     await fetch(`/api/getproducts?page=${1}`).then(a=>{
     return a.json()
 }).then(a=> {
+  console.log(a)
     setData(a.userdata)
 })}
   useEffect(() => {
@@ -26,7 +27,7 @@ const SearchPage = () => {
     const query = e.target.value;
     setSearchQuery(query);
     const filteredResults = data.filter(item => 
-      item.title.toLowerCase().includes(query.toLowerCase()) || item.description.toLowerCase().includes(query.toLowerCase()) || item.price.toLowerCase().includes(query.toLowerCase()) || item.color.toLowerCase().includes(query.toLowerCase()) 
+      item.title.toLowerCase().includes(query.toLowerCase()) || item.description.toLowerCase().includes(query.toLowerCase()) || item.price.toString().includes(query.toLowerCase()) || item.color.toLowerCase().includes(query.toLowerCase()) 
     
     );
     setSearchResults(filteredResults);

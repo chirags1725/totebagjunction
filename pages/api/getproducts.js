@@ -13,15 +13,16 @@ export default async function handler(req, res) {
     try {
       await client.connect();
 
-      const products = parseInt(req.query.products) || 8
-      const skip = (parseInt(req.query.page) - 1) * products || 0
-
+      
       const database = client.db("users");
       const collection = database.collection("products");
+      const totalCount = await collection.countDocuments();
+      
+      const products = parseInt(req.query.products) || parseInt(totalCount)
+      const skip = (parseInt(req.query.page) - 1) * products || 0
       
       const userdata = await collection.find().sort({ _id: -1 }).skip(skip).limit(products).toArray();
 
-      const totalCount = await collection.countDocuments();
       // collection.
 
       res.status(200).json({userdata , totalCount});
