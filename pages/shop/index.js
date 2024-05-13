@@ -27,7 +27,7 @@ const shop = () => {
     useEffect(() => {
       fetchdata()
     
-    }, [])
+    }, [currentPage])
     
 
     const buttons = [];
